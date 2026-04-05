@@ -1,0 +1,68 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: cart-service
+          uri: lb://CART-SERVICE
+          predicates:
+            - Path=/cart/**
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/product/**
+        - id: product-detail-service
+          uri: lb://PRODUCT-DETAIL-SERVICE
+          predicates:
+            - Path=/product-detail/**
+        - id: inventory-service
+          uri: lb://INVENTORY-SERVICE
+          predicates:
+            - Path=/inventory/**
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/orders/**
+        - id: payment-service
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/payment/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+
+logging:
+  level:
+    root: INFO
+    org.springframework.security: DEBUG
+    com.ecommerce.api_gateway: DEBUG
+  pattern:
+    level: "%5p [${spring.application.name}, traceId=%X{traceId}, spanId=%X{spanId}]"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway,health,info
+  endpoint:
+    gateway:
+      enabled: true
+  tracing:
+    sampling:
+      probability: 1.0  # capture all requests (dev only)
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
+jwt:
+  secret: my-super-secret-key-which-is-long
+

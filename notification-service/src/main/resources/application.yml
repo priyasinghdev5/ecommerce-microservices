@@ -1,0 +1,56 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: notification-service
+
+  cloud:
+    config:
+      enabled: false
+
+  config:
+    import-check:
+      enabled: false
+
+  kafka:
+    bootstrap-servers: kafka:9092
+    consumer:
+      group-id: notification-group
+      auto-offset-reset: earliest
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+    properties:
+      spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+      spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+
+      spring.json.trusted.packages: "*"
+      spring.json.use.type.headers: false
+      spring.json.value.default.type: com.ecommerce.notification_service.model.OrderPlacedEvent  # ✅ VERY IMPORTANT
+
+  data:
+    mongodb:
+      uri: mongodb://admin:password@mongodb:27017/notificationdb?authSource=admin
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+
+logging:
+  file:
+    name: /app/logs/notification-service.log
+  level:
+    root: INFO
+    org.springframework.kafka: DEBUG
+    org.springframework.boot.context.config: DEBUG
+  pattern:
+    level: "%5p [${spring.application.name}, traceId=%X{traceId}, spanId=%X{spanId}]"
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0  # capture all requests (dev only)
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans

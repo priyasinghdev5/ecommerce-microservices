@@ -1,0 +1,17 @@
+server:
+  port: 8081
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://admin:password@mongodb:27017/productdb?authSource=admin
+  application:
+    name: config-server
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+
+custom:
+  message: "Hello from Product Service"

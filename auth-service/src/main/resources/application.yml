@@ -1,0 +1,28 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: auth-service
+  data:
+    mongodb:
+      uri: mongodb://admin:password@mongodb:27017/authdb?authSource=admin
+  config:
+    import: "optional:configserver:http://config-server:8888"
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+
+custom:
+  message: "Hello from Product Original Service"
+
+logging:
+  file:
+    name: /app/logs/auth-service.log
+  level:
+    root: INFO
+    org.springframework.security: DEBUG
+jwt:
+  secret: my-super-secret-key-which-is-long

@@ -1,0 +1,61 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: product-service
+  data:
+    mongodb:
+      uri: mongodb://admin:password@mongodb:27017/productdb?authSource=admin
+    redis:
+      host: localhost
+      port: 6379
+  config:
+    import: "optional:configserver:http://config-server:8888"
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+
+custom:
+  message: "Hello from Product Original Service"
+
+logging:
+  file:
+    name: /app/logs/product-service.log
+  level:
+    root: INFO
+    org.springframework.cache: TRACE
+  pattern:
+    level: "%5p [${spring.application.name}, traceId=%X{traceId}, spanId=%X{spanId}]"
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      inventoryService:
+        registerHealthIndicator: true
+        slidingWindowSize: 5
+        minimumNumberOfCalls: 3
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+
+  timelimiter:
+    instances:
+      inventoryService:
+        timeoutDuration: 3s
+
+  retry:
+    instances:
+      inventoryService:
+        maxAttempts: 3
+        waitDuration: 1s
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0  # capture all requests (dev only)
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
+

@@ -1,0 +1,190 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongo-data:/data/db
+
+  zipkin:
+      image: openzipkin/zipkin
+      ports:
+        - "9411:9411"
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  eureka-server:
+    build: ../eureka-server
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    volumes:
+      - ./logs/eureka:/app/logs
+
+  config-server:
+    build: ../config-server
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    depends_on:
+      - eureka-server
+
+  product-service:
+    build: ../product-service
+    container_name: product-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongodb
+      - eureka-server
+      - config-server
+      - zipkin
+    volumes:
+      - ./logs/product:/app/logs
+
+  product-detail-service:
+    build: ../product-detail-service
+    container_name: product-detail-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mongodb
+      - eureka-server
+      - config-server
+      - zipkin
+    volumes:
+      - ./logs/product-detail:/app/logs
+
+  cart-service:
+    build: ../cart-service
+    container_name: cart-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      - mongodb
+      - eureka-server
+      - config-server
+      - zipkin
+    volumes:
+      - ./logs/cart:/app/logs
+
+  auth-service:
+    build: ../auth-service
+    container_name: auth-service
+    ports:
+      - "8084:8084"
+    depends_on:
+      - mongodb
+      - eureka-server
+      - config-server
+      - zipkin
+    volumes:
+      - ./logs/auth:/app/logs
+
+  api-gateway:
+    build: ../api-gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - auth-service
+      - cart-service
+      - eureka-server
+      - zipkin
+    volumes:
+      - ./logs/gateway:/app/logs
+
+  inventory-service:
+    build: ../inventory-service
+    container_name: inventory-service
+    ports:
+      - "8085:8085"
+    depends_on:
+      - mongodb
+      - eureka-server
+      - config-server
+      - zipkin
+    volumes:
+      - ./logs/inventory:/app/logs
+
+  order-service:
+    build: ../order-service
+    container_name: order-service
+    ports:
+      - "8086:8086"
+    depends_on:
+      - kafka
+      - zookeeper
+      - mongodb
+      - eureka-server
+      - zipkin
+    volumes:
+      - ./logs/order:/app/logs
+  payment-service:
+    build: ../payment-service
+    container_name: payment-service
+    ports:
+      - "8087:8087"
+    depends_on:
+      - mongodb
+      - eureka-server
+      - config-server
+      - zipkin
+    volumes:
+      - ./logs/payment:/app/logs
+  notification-service:
+    build: ../notification-service
+    container_name: notification-service
+    ports:
+      - "8088:8088"
+    depends_on:
+      - kafka
+      - zookeeper
+      - mongodb
+      - eureka-server
+      - zipkin
+    volumes:
+      - ./logs/notification:/app/logs
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    healthcheck:
+      test: [ "CMD", "bash", "-c", "nc -z localhost 9092" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mongo-data:
