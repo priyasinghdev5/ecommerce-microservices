@@ -28,6 +28,7 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 sh '''
+                cd docker
                 docker-compose build
                 '''
             }
