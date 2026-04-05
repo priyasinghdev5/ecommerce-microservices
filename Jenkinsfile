@@ -12,7 +12,15 @@ pipeline {
         stage('Build Services') {
             steps {
                 sh '''
-                mvn clean install -DskipTests
+                cd api-gateway && mvn clean install -DskipTests
+                cd ../auth-service && mvn clean install -DskipTests
+                cd ../product-service && mvn clean install -DskipTests
+                cd ../product-detail-service && mvn clean install -DskipTests
+                cd ../cart-service && mvn clean install -DskipTests
+                cd ../order-service && mvn clean install -DskipTests
+                cd ../inventory-service && mvn clean install -DskipTests
+                cd ../payment-service && mvn clean install -DskipTests
+                cd ../notification-service && mvn clean install -DskipTests
                 '''
             }
         }
