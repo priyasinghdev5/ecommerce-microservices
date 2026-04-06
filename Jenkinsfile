@@ -39,6 +39,7 @@ pipeline {
         stage('Run Containers') {
             steps {
                 sh '''
+                cd docker
                 docker-compose down || true
                 docker-compose up -d
                 '''
