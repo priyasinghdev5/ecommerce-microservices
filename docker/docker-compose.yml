@@ -50,6 +50,7 @@ services:
       - eureka-server
       - config-server
       - zipkin
+      - redis
     volumes:
       - ./logs/product:/app/logs
 
