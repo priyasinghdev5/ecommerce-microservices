@@ -21,6 +21,8 @@ pipeline {
                 cd ../inventory-service && mvn clean install -DskipTests
                 cd ../payment-service && mvn clean install -DskipTests
                 cd ../notification-service && mvn clean install -DskipTests
+                cd ../eureka-server && mvn clean install -DskipTests
+                cd ../config-server && mvn clean install -DskipTests
                 '''
             }
         }
