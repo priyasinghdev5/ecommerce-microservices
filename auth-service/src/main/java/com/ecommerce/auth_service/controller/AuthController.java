@@ -46,8 +46,4 @@ public class AuthController {
         userService.deleteUser(userId);
     }
 
-    @GetMapping
-    public List<User> getAllProducts() {
-        return userService.getAllProducts();
-    }
 }

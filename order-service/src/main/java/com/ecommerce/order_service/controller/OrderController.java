@@ -20,24 +20,26 @@ public class OrderController {
         return service.checkout(userId);
     }
 
-    @GetMapping("/{userId}")
+    // Get orders by user
+    @GetMapping("/user/{userId}")
     public List<Order> getOrders(@PathVariable String userId) {
         return service.getOrders(userId);
     }
 
+    // Get order by ID
     @GetMapping("/{orderId}")
     public Order getOrderById(@PathVariable String orderId) {
         return service.getOrderById(orderId);
     }
 
-    //Update order status (ADMIN)
+    // Update order status (ADMIN)
     @PutMapping("/{orderId}/status")
     public Order updateOrderStatus(@PathVariable String orderId,
                                    @RequestBody OrderStatusRequest request) {
         return service.updateStatus(orderId, request.getStatus());
     }
 
-    //Cancel order
+    // Cancel order
     @DeleteMapping("/{orderId}")
     public String cancelOrder(@PathVariable String orderId) {
         service.cancelOrder(orderId);

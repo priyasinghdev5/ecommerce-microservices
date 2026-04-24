@@ -1,0 +1,556 @@
+{
+  "info": {
+    "_postman_id": "abe61db1-b31e-4f57-91d1-2e24964a8ef0",
+    "name": "Ecomerce_advance_assignment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "29879627"
+  },
+  "item": [
+    {
+      "name": "add a product",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNzc0NTI2MDAzLCJleHAiOjE3NzQ1Mjk2MDN9.NbgE2GIqUDj5YVYpJZ--P1rRDpm557VIlCXvaam2QqA",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"iphone\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/product",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "product"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get products",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyMTIzNDU2NzgiLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzc0NTI1ODQ5LCJleHAiOjE3NzQ1Mjk0NDl9.rl8gFKpPl2tbKkMp8J2iO6hmUraDNi7LBBE3Aa0D7zY",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/product",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "product"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "save product detail",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNzc0NTI2MDAzLCJleHAiOjE3NzQ1Mjk2MDN9.NbgE2GIqUDj5YVYpJZ--P1rRDpm557VIlCXvaam2QqA",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"productId\": \"69c51e784b2d46c8889aa962\",\r\n    \"category\": \"phone\",\r\n    \"price\": 123999.99,\r\n    \"size\" : 3\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/product-detail",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "product-detail"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get product detail",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNzc0NTI2MDAzLCJleHAiOjE3NzQ1Mjk2MDN9.NbgE2GIqUDj5YVYpJZ--P1rRDpm557VIlCXvaam2QqA",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/product-detail/69c51e784b2d46c8889aa962",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "product-detail",
+            "69c51e784b2d46c8889aa962"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "add to cart",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTIiLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzc0NTExNTA1LCJleHAiOjE3NzQ1MTUxMDV9.G627H2om-EWBBw_SGk5n49fyO8Kmy6yW_iOHHHIxOvQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"productId\": \"1\",\r\n    \"quantity\": 2\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/cart/user10/add",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "cart",
+            "user10",
+            "add"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get cart",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTIiLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzc0NTExNTA1LCJleHAiOjE3NzQ1MTUxMDV9.G627H2om-EWBBw_SGk5n49fyO8Kmy6yW_iOHHHIxOvQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/cart/user10",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "cart",
+            "user10"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "clear cart",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"realme\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8083/cart/user1/clear",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "cart",
+            "user1",
+            "clear"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "remove item",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"realme\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8083/cart/user1/remove/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "cart",
+            "user1",
+            "remove",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get token",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"user2\",\r\n    \"password\": \"password\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8084/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8084",
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "register user",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"user2\",\r\n  \"password\": \"password\",\r\n  \"roles\": [\"ROLE_USER\"]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "add inventory for product",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"productId\": \"69c51ebf8f54f0432d252c6c\",\r\n    \"quantity\": 100\r\n  \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/inventory/add",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "inventory",
+            "add"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get stocks for product",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEyMyIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNzc0NTI2MDAzLCJleHAiOjE3NzQ1Mjk2MDN9.NbgE2GIqUDj5YVYpJZ--P1rRDpm557VIlCXvaam2QqA",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/inventory/69c51ebf8f54f0432d252c6c",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "inventory",
+            "69c51ebf8f54f0432d252c6c"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get full product details",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"realme\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/product/69c51ebf8f54f0432d252c6c/full",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "product",
+            "69c51ebf8f54f0432d252c6c",
+            "full"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "checkout cart",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <USER_TOKEN>"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/orders/checkout/user123",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "orders",
+            "checkout",
+            "user123"
+          ]
+        },
+        "description": "Generated from cURL: curl --location 'http://localhost:8080/orders/checkout/user123' \\\r\n--header 'Authorization: Bearer <USER_TOKEN>'"
+      },
+      "response": []
+    },
+    {
+      "name": "get all orders for user",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiaHV0ZXNoMTIzNCIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3NzUxMjcwMTcsImV4cCI6MTc3NTEzMDYxN30.c3ZnqMSAf9EjQYrrR0UmUBrJjUpBx4uYIQHV_4_CdQI"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/orders/user/testUser",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "orders",
+            "user",
+            "testUser"
+          ]
+        },
+        "description": "Generated from cURL: curl --location 'http://localhost:8080/orders/user/user123' \\\r\n--header 'Authorization: Bearer <USER_TOKEN>'"
+      },
+      "response": []
+    },
+    {
+      "name": "get order by id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <USER_TOKEN>"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/orders/id/order123",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "orders",
+            "id",
+            "order123"
+          ]
+        },
+        "description": "Generated from cURL: curl --location 'http://localhost:8080/orders/id/order123' \\\r\n--header 'Authorization: Bearer <USER_TOKEN>'"
+      },
+      "response": []
+    }
+  ]
+}
