@@ -1,5 +1,4 @@
                         
-                            **Microservices E-Commerce Assignment**
 
 **1. Introduction**
    This project implements a backend system for an eCommerce application using Microservices Architecture. The system is designed to be scalable, loosely coupled, and easily extendable for future enhancements.
